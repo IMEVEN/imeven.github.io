@@ -34,14 +34,12 @@
 
     function getUrlById(id) {
       id = parseInt(id);
-      if (id > 297) {
+      if (id > 988) {
+        id += 22906;
+      } else if (id > 986) {
+        id += 7633;
+      } else if (id > 297) {
         id += 361;
-      }
-      if (id > 986) {
-        id += 7272;
-      }
-      if (id > 986) {
-        id += 15273;
       }
       return `https://www.114zw.la/book/5883/${7510374 + id}.html`;
     }
