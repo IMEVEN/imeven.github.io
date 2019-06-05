@@ -12,8 +12,8 @@
 </head>
 <body>
 <div style="display: flex;">
-  <input style="flex: 1;" type="text" name="id" id="id">
-  <input style="flex: 1;" type="button" value="GO" onclick="go()">
+  <input style="flex: 1;" type="text" name="url" id="url">
+  <input style="flex: 1;" type="button" value="GO" id="btnGo" onclick="go()">
 </div>
 <iframe id="iframe"
         src="about:_blank;"
@@ -25,69 +25,38 @@
         sandbox=""></iframe>
 
 <script>
-    var isFirstTime = true;
-    var hasSubPage = true;
-
-    function S(id) {
+	(function() {
+		function S(id) {
       return document.getElementById(id);
     }
+		function getUrlParam(name, url) {
+			var url = new URL(url || location.href);
+			return url.searchParams.get(name);
+		}
 
-    function getUrlById(id) {
-      id = parseInt(id);
-      if (id > 988) {
-        id += 22906;
-      } else if (id > 986) {
-        id += 7633;
-      } else if (id > 297) {
-        id += 361;
+		function go() {
+      var url = S('url').value;
+      if (url && url.indexOf('http') === 0) {
+				S('iframe').src = url;
+				
+				var pageUrl = new URL(location.href);
+				pageUrl.searchParams.set('url', url);
+				window.history.pushState('', document.title, pageUrl);
+
+				localStorage.setItem('last_url', url);
       }
-      return `https://www.114zw.la/book/5883/${7510374 + id}.html`;
     }
 
-    function go() {
-      var id = S('id').value;
-      if (id.indexOf('http') === 0) {
-        S('iframe').src = id;
-        return;
-      }
-      isFirstTime = true;
-      S('iframe').src = getUrlById(id);
-    }
+		function main() {
+			var url = getUrlParam('url') || localStorage.getItem('last_url');
+			S('url').value = url;
+			document.title = getUrlParam('title') || url;
+			S('btnGo').onclick = go;
+			go();
+		}
 
-    function onContentLoaded() {
-
-      var id = S('id').value;
-      if (parseInt(id)) {
-        if (isFirstTime) {
-          isFirstTime = false;
-        } else {
-          if (hasSubPage) {
-            hasSubPage = false;
-          } else {
-            hasSubPage = true;
-            id++;
-          }
-          
-        }
-        localStorage.setItem('last_id', id);
-        S('id').value = id;
-      }
-      // localStorage.setItem('last_src', S('iframe').src);
-    }
-
-    function main() {
-      var id = localStorage.getItem('last_id');
-      var url = 'https://www.114zw.la/book/5883/7511273.html';
-      if (id) {
-        S('id').value = id;
-        url = getUrlById(id)
-      }
-      S('iframe').src = url;
-      S('iframe').onload = onContentLoaded;
-      // S('iframe').src = localStorage.getItem('last_src') || 'https://www.114zw.la/book/5883/7511273.html';
-    }
-
-    main();
+		main();
+	})();
   </script>
 </body>
 </html>
