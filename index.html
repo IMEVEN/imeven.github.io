@@ -1,23 +1,92 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui,shrink-to-fit=no">
+  <title>亦文的博客</title>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin:0;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    padding: 2px 12px;
+    border-bottom: 4px solid #000;
+    font:14px/1.7 'Microsoft Yahei',Helvetica;
+    color: #000;
+    -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+  }
+  .site-header {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 0;
+  }
+  .site-header h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    -webkit-box-reflect: below 2px -webkit-linear-gradient(transparent,transparent 50%,rgba(255,255,255,.1));
+    line-height: 1;
+  }
+  .site-content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 12px 0;
+  }
+  .site-content .article-title {
+    margin: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #111;
+    font-size: 18px;
+  }
+  .site-content .article-tags {
+    margin: 6px 0;
+    color: #666;
+  }
+  .site-footer {
+    margin-top: 24px;
+  }
+  .site-footer p {
+    text-align: center;
+    color: #CCC;
+  }
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>亦文的博客</h1>
+  </header>
+  <article class="site-content">
+    <h2 class="article-title">Later = Never</h2>
+    <p class="article-tags">Tags：思考</p>
+    <article>
+      <p>写下第一篇文章。</p>
+      <p>一直以来，行动力太差：</p>
+      <ul>
+        <li>还没想好怎么做</li>
+        <li>准备得再充分一点再做吧</li>
+        <li>太累了，先放松一下吧</li>
+        <li>等有空再弄吧</li>
+        <li>……</li>
+      </ul>
+      <p>但稍候再做，这事基本就做不成了，Later = Never。</p>
+      <p>我的问题在于，想得太多，做得太少。</p>
+      <p>再次写下博客第一篇文章，出发。</p>
+    </article>
+  </article>
+  <footer class="site-footer">
+    <p>-- END --</p>
+  </footer>
+</body>
+</html>
