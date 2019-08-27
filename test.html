@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui,shrink-to-fit=no">
+  <title></title>
+  <style>
+  html, body {width: 100%; height:100%; margin:0;}
+  body {font:14px/1.5 'Microsoft Yahei',Helvetica; -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-touch-callout: none;}
+  </style>
+</head>
+<body>
+<div style="display: flex;">
+  <input style="flex: 1;" type="text" name="url" id="url">
+  <input style="flex: 1;" type="button" value="GO" id="btnGo" onclick="go()">
+</div>
+<iframe id="iframe"
+        src="about:_blank;"
+        width="100%"
+        height="110%"
+        frameborder="0"
+        scrolling="auto"
+        allowfullscreen
+        sandbox=""></iframe>
+
+<script>
+	(function() {
+		function S(id) {
+      return document.getElementById(id);
+    }
+		function getUrlParam(name, url) {
+			var url = new URL(url || location.href);
+			return url.searchParams.get(name);
+		}
+
+		function go() {
+      var url = S('url').value;
+      if (url && url.indexOf('http') === 0) {
+				S('iframe').src = url;
+				
+				var pageUrl = new URL(location.href);
+				pageUrl.searchParams.set('url', url);
+				window.history.pushState('', document.title, pageUrl);
+
+				localStorage.setItem('last_url', url);
+      }
+    }
+
+		function main() {
+			var url = getUrlParam('url') || localStorage.getItem('last_url');
+			S('url').value = url;
+			document.title = getUrlParam('title') || url;
+			S('btnGo').onclick = go;
+			go();
+		}
+
+		main();
+	})();
+  </script>
+</body>
+</html>
