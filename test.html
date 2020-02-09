@@ -48,7 +48,8 @@
     }
 
 		function main() {
-			var url = getUrlParam('url') || localStorage.getItem('last_url');
+			// var url = getUrlParam('url') || localStorage.getItem('last_url');
+			var url = getUrlParam('url');
 			S('url').value = url;
 			document.title = getUrlParam('title') || url;
 			S('btnGo').onclick = go;
