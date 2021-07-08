@@ -1,0 +1,10 @@
+{
+  "name": "Even Time",
+  "short_name" :"Even",
+  "start_url": "r90.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#000",
+  "background_color": "#000",
+  "icons": []
+}

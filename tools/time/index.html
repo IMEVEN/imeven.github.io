@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="apple-touch-fullscreen" content="yes"/>
+  <link rel="manifest" href="manifest.json">
+  <title>光阴荏苒，日月如梭</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      background: black;
+    }
+    .date {
+      padding-top: 4vh;
+      font-size: 64px;
+      font-weight: normal;
+      color: #888;
+    }
+    .time {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 360px;
+      color: #ca6d00;
+    }
+    .copyright {
+      color: #333;
+    }
+    @media screen and (max-width: 888px) {
+      .time {
+        font-size: 128px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="date" id="date">7 月 8 日</div>
+  <div class="time" id="time">15:38</div>
+  <div class="copyright">&copy; 2021-Now Even</div>
+
+  <script>
+    (function(){
+      function S(id) {
+        return document.getElementById(id);
+      }
+
+      function fmt(time) {
+        return String(time).padStart(2, '0');
+      }
+      
+      function update() {
+        const d = new Date();
+        S('date').innerHTML = `${d.getMonth() + 1}月${d.getDate()}日`;
+        S('time').innerHTML = `${fmt(d.getHours())}:${fmt(d.getMinutes())}`;
+        setTimeout(update, 30000)
+      }
+      update();
+    })();
+  </script>
+</body>
+</html>
